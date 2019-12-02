@@ -16,10 +16,15 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+/*
 Route::get('/colors', 'ApiColorProvider@colorList');
-Route::post('/colors/save', 'ApiColorProvider@saveColor');
+Route::post('/colors/save', 'ApiColorProvider@saveColor');*/
 
+Route::apiResource('/buyers', 'BuyerController');
+Route::get('/search/buyers/{field}/{query}', 'BuyerController@searchBuyers');
+
+Route::apiResource('/colors', 'ColorController');
+Route::get('/search/colors/{field}/{query}', 'ColorController@searchColors');
 
 Route::apiResource('/sizes', 'SizeController');
 Route::get('/search/sizes/{field}/{query}', 'SizeController@searchSizes');

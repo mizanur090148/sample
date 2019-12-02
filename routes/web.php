@@ -18,5 +18,6 @@
 Auth::routes();
 */
 Route::get('/', 'DashboardController@dashboard');
+Route::get('buyers', 'BuyerController');
 Route::get('colors', 'ColorController');
 Route::get('sizes', 'SizeController');

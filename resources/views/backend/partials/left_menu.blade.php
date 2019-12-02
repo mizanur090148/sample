@@ -30,9 +30,9 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="components-blog-posts.html">
+        <a class="nav-link " href="{{ url('/buyers') }}">
           <i class="material-icons">vertical_split</i>
-          <span>Blog Posts</span>
+          <span>Buyers</span>
         </a>
       </li>
       <li class="nav-item">

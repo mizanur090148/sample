@@ -59,7 +59,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="sizeModalTitle">{{ editMode ? 'Edit' : 'Add New' }} Size</h5>
+                        <h5 class="modal-title font-weight-bold" id="sizeModalTitle">{{ editMode ? 'Edit' : 'Add New' }} Size</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -68,7 +68,7 @@
                         <div class="modal-body">
                             <alert-error :form="form" class="text-center"></alert-error>
                             <div class="form-group">
-                                <label>Name</label>
+                                <label class="font-weight-bold">Name</label>
                                 <input v-model="form.name" type="text" name="name"
                                 class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
                                 <has-error :form="form" field="name"></has-error>
@@ -132,7 +132,7 @@
                     })
             },
             searchData() {
-                 axios.get('api/sizes?name='+this.query+'&page='+this.pagination.current_page)
+                 axios.get('api/sizes?query='+this.query+'&page='+this.pagination.current_page)
                  .then(response => {
                         this.sizes = response.data.data;
                         this.pagination = response.data.meta;        
@@ -208,7 +208,7 @@
                                             this.$snotify.success('Successfully deleted', 'Success');
                                         })
                                         .catch(e => {
-                                            console.log(e);
+                                            this.$snotify.success('Not deleted', 'Fail');
                                         })
                                     console.log(size);
                                 },
@@ -224,8 +224,7 @@
                         ]
                     }
                 );
-            }           
-           
+            }
         }
     }
 </script>

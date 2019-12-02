@@ -7,11 +7,13 @@
 require('./bootstrap');
 
 import Vue from 'vue'
-import VueProgressBar from 'vue-progressbar'
 import { Form, HasError, AlertError } from 'vform'
+import VueProgressBar from 'vue-progressbar'
+import Toasted from 'vue-toasted'
 /*
 import VueProgressBar from 'vue-progressbar' */
 import Snotify, { SnotifyPosition } from 'vue-snotify'
+
 window.Form = Form
 const Snotifyoptions = {
   toast: {
@@ -35,6 +37,7 @@ const VueProgressBarOptions = {
 
 Vue.use(VueProgressBar, VueProgressBarOptions);
 Vue.use(Snotify, Snotifyoptions);
+Vue.use(Toasted);
 
 
 /**
@@ -46,6 +49,7 @@ Vue.use(Snotify, Snotifyoptions);
  */
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('buyer-component', require('./components/BuyerComponent.vue').default);
 Vue.component('color-component', require('./components/ColorComponent.vue').default);
 Vue.component('size-component', require('./components/SizeComponent.vue').default);
 Vue.component('pagination', require('./components/partial/PaginationComponent.vue').default);

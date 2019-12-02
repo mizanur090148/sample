@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class SizeCollection extends ResourceCollection
+class ColorCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,10 +15,10 @@ class SizeCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => $this->collection->transform(function($size) {
+            'data' => $this->collection->transform(function($color) {
                 return [
-                    'id' => $size->id,
-                    'name' => $size->name                    
+                    'id' => $color->id,
+                    'name' => $color->name                    
                 ];
             })
         ];
