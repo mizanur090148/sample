@@ -28,3 +28,6 @@ Route::get('/search/colors/{field}/{query}', 'ColorController@searchColors');
 
 Route::apiResource('/sizes', 'SizeController');
 Route::get('/search/sizes/{field}/{query}', 'SizeController@searchSizes');
+
+Route::apiResource('/users', 'UserController');
+Route::get('/search/users/{field}/{query}', 'UserController@searchUsers');

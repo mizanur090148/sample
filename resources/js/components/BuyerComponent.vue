@@ -35,9 +35,9 @@
 		                                <td>{{ ++index }}</td>
 		                                <td>{{ buyer.name }}</td>	                                
 		                                <td>
-                                            <button type="button" class="btn btn-primary btn-sm" @click="edit(buyer)"><i class="fas fa-edit"></i></button>
+                                            <button type="button" class="btn btn-primary btn-xs" @click="edit(buyer)"><i class="fas fa-edit"></i></button>
 
-                                            <button type="button" class="btn btn-danger btn-sm" @click="destroy(buyer.id)"><i class="fas fa-trash-alt"></i></button>
+                                            <button type="button" class="btn btn-danger btn-xs" @click="destroy(buyer.id)"><i class="fas fa-trash-alt"></i></button>
 		                                </td>
 	                              	</tr>
 		                            <tr v-show="!buyers.length">

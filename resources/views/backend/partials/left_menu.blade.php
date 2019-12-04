@@ -1,10 +1,10 @@
 <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
   <div class="main-navbar">
     <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
-      <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
+      <a class="navbar-brand w-100 mr-0" href="{{ url('/dashboard') }}" style="line-height: 25px;">
         <div class="d-table m-auto">
-          <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;" src="{{ asset('/backend/images/shards-dashboards-logo.svg') }}" alt="Shards Dashboard">
-          <span class="d-none d-md-inline ml-1">Shards Dashboard</span>
+          <img id="main-logo" class="d-inline-block align-top mr-1" style="max-width: 25px;" src="{{ asset('/backend/images/shards-dashboards-logo.svg') }}" alt="Dashboard">
+          <span class="d-none d-md-inline ml-1">Dashboard</span>
         </div>
       </a>
       <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
@@ -23,12 +23,12 @@
   </form>
   <div class="nav-wrapper">
     <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link active" href="index.html">
+      {{-- <li class="nav-item">
+        <a class="nav-link active" href="{{ url('/dashboard') }}">
           <i class="material-icons">edit</i>
-          <span>Blog Dashboard</span>
+          <span>Dashboard</span>
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item">
         <a class="nav-link " href="{{ url('/buyers') }}">
           <i class="material-icons">vertical_split</i>
@@ -47,10 +47,17 @@
           <span>Sizes</span>
         </a>
       </li>
+      
       <li class="nav-item">
-        <a class="nav-link " href="tables.html">
+        <a class="nav-link " href="{{ url('/sample-codes') }}">
           <i class="material-icons">table_chart</i>
-          <span>Tables</span>
+          <span>Sample Codes</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="{{ url('/users') }}">
+          <i class="material-icons">person</i>
+          <span>Users</span>
         </a>
       </li>
       <li class="nav-item">
@@ -60,9 +67,9 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="errors.html">
-          <i class="material-icons">error</i>
-          <span>Errors</span>
+        <a class="nav-link " href="{{ url('/logout') }}">
+          <i class="material-icons">person</i>
+          <span>Logout</span>
         </a>
       </li>
     </ul>

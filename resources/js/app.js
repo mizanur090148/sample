@@ -52,6 +52,7 @@ Vue.use(Toasted);
 Vue.component('buyer-component', require('./components/BuyerComponent.vue').default);
 Vue.component('color-component', require('./components/ColorComponent.vue').default);
 Vue.component('size-component', require('./components/SizeComponent.vue').default);
+Vue.component('user-component', require('./components/UserComponent.vue').default);
 Vue.component('pagination', require('./components/partial/PaginationComponent.vue').default);
 
 Vue.component(HasError.name, HasError);

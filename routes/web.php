@@ -17,7 +17,13 @@
 
 Auth::routes();
 */
-Route::get('/', 'DashboardController@dashboard');
+Route::get('/dashboard', 'DashboardController@dashboard');
 Route::get('buyers', 'BuyerController');
 Route::get('colors', 'ColorController');
 Route::get('sizes', 'SizeController');
+Route::get('users', 'UserController');
+Route::resource('sample-codes', 'SampleCodeController');
+
+Route::get('/', 'AuthController@login');
+Route::post('/login-post', 'AuthController@loginPost');	
+Route::get('/logout', 'AuthController@logout');	
