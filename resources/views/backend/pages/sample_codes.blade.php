@@ -62,14 +62,14 @@
                   </tr>
                 @empty
                   <tr>
-                    <td colspan="6" class="text-danger">Not found</td>                  
+                    <td colspan="7" class="text-danger">Not found</td>                  
                   </tr>
                 @endforelse
               </tbody>
               <tfoot>
                 @if($sample_code_list->total() > 15)
                   <tr>
-                    <td colspan="4" align="center">
+                    <td colspan="7" align="center">
                       {{ $transactions->appends(request()->except('page'))->links() }}
                     </td>
                   </tr>
