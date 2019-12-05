@@ -7,6 +7,7 @@ use App\Models\SampleCode;
 use App\Models\Buyer;
 use App\Models\Color;
 use App\Models\Size;
+use Auth, DB, Session;
 
 class SampleCodeController extends Controller
 {
@@ -17,12 +18,13 @@ class SampleCodeController extends Controller
      */
     public function index()
     {
-        $sample_codes = SampleCode::where('status', 0)
+        $sample_code_list = SampleCode::with('sample_codes')
+            ->whereNull('sample_code_id')
             ->latest()
             ->paginate();
 
         return view('backend.pages.sample_codes', [
-            'sample_codes' => $sample_codes
+            'sample_code_list' => $sample_code_list
         ]);
     }
 
@@ -54,17 +56,38 @@ class SampleCodeController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $sample_code = SampleCode::create($request->only('buyer_id', 'color_id'));
-
-        foreach ($request->quantity as $key => $sizeId) {
+        try {
+            DB::beginTransaction();
             $input = [
-                'buyer_id' => $request->buyer_id[$key],
-                'color_id' => $request->color_id[$key],
-                'size_id' => $request->size_id[$key],
-                //'' => $request->size_id[$key],
+                'challan_no' => userId().time()
             ];
+            $sample_code = SampleCode::create($input);
+
+            $child_input = [];
+            foreach ($request->quantity as $key => $quantity) {
+                for ($i = 0; $i < $quantity; $i++) {
+                    $input = [
+                        'buyer_id' => $request->buyer_id[$key],
+                        'color_id' => $request->color_id[$key],
+                        'size_id' => $request->size_id[$key],                    
+                        'created_by' => Auth::user()->id,
+                        'factory_id' => Auth::user()->factory_id,
+                    ];
+                    $child_input[] = $input;
+                }
+            }
+
+            if (count($child_input)) {
+                $sample_code->sample_codes()->createMany($child_input);
+                DB::commit();                
+            }
+        } catch (Exception $e) {
+            DB::rollback();
+            Session::flash('error', $e->getMessage());
+            return redirect()->back();
         }
+        Session::flash('success', 'Successfully Created');
+        return redirect('sample-codes');
     }
 
     /**
@@ -75,7 +98,11 @@ class SampleCodeController extends Controller
      */
     public function show($id)
     {
-        //
+        $sample_codes = SampleCode::where('sample_code_id', $id)->get();
+
+        return view('backend.pages.sample_code_show', [
+            'sample_codes' => $sample_codes
+        ]);
     }
 
     /**

@@ -15,9 +15,10 @@ class CreateSampleCodesTable extends Migration
     {
         Schema::create('sample_codes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('challan_no', 20)->nullable();
             $table->unsignedBigInteger('sample_code_id')->nullable();
-            $table->unsignedBigInteger('buyer_id');
-            $table->unsignedBigInteger('color_id');
+            $table->unsignedBigInteger('buyer_id')->nullable();
+            $table->unsignedBigInteger('color_id')->nullable();
             $table->unsignedBigInteger('size_id')->nullable();
             $table->smallInteger('status')->default(0)->comment('1 = sent, 2 = received');
             $table->unsignedBigInteger('created_by')->nullable();

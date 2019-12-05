@@ -21,40 +21,49 @@
               <div class="row">
                 <div class="col">
                   {!! Form::model($sample_code, ['url' => 'sample-codes', 'method' => 'POST']) !!}
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
+                    <div class="form-row" style="padding-bottom: 0px !important;">
+                      <div class="col-md-3">
                         <label for="feFirstName">Buyer</label>
-                        {!! Form::select('buyer_id', $buyers, null, ['class' => 'form-control select2', 'required']) !!}
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="feFirstName">Color</label>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="feFirstName">Size</label>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="feFirstName">Quantity</label>
+                      </div>
+                    </div>
+                    <div class="form-row clone" style="padding-top: 0px !important;">
+                      <div class="form-group col-md-3">                       
+                        {!! Form::select('buyer_id[]', $buyers, null, ['class' => 'form-control select2', 'required']) !!}
                         @if($errors->has('buyer_id'))
                           <span class="text-danger">{{ $errors->first('buyer_id') }}</span>
                         @endif
                       </div>
-                      <div class="form-group col-md-6">
-                        <label for="feLastName">Color</label>
-                        {!! Form::select('color_id', $colors, null, ['class' => 'form-control select2' , 'required']) !!}
+                      <div class="form-group col-md-3">                        
+                        {!! Form::select('color_id[]', $colors, null, ['class' => 'form-control select2' , 'required']) !!}
                         @if($errors->has('color_id'))
                           <span class="text-danger">{{ $errors->first('color_id') }}</span>
                         @endif
                       </div>
-                    </div>
-                    <div class="form-row clone">
-                      <div class="form-group col-md-6">
-                        <label for="feEmailAddress">Size</label>
+                    {{-- </div>
+                    <div class="form-row clone"> --}}
+                      <div class="form-group col-md-3">                        
                         {!! Form::select('size_id[]', $sizes, null, ['class' => 'form-control select2', 'required']) !!}
                         
                         @if($errors->has('email'))
                           <span class="text-danger">{{ $errors->first('email') }}</span>
                         @endif
                       </div>
-                      <div class="form-group col-md-5">
-                        <label for="fePassword">Quantity</label>
-                        {!! Form::number('quantity[]', null, ['class' => 'form-control', 'required']) !!}
-
+                      <div class="form-group col-md-2">                        
+                        {!! Form::number('quantity[]', null, ['class' => 'form-control number-right', 'required']) !!}
                         @if($errors->has('personal_code'))
                           <span class="text-danger">{{ $errors->first('personal_code') }}</span>
                         @endif
                       </div>
-                      <div class="form-group col-md-1" style="margin-top: 30px;">
+                      <div class="form-group col-md-1">
                         <button type="button" class="btn btn-success add-more-btn"><i class="fa fa-plus"></i></button>
                       </div>
                     </div>

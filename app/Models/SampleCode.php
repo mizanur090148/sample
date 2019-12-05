@@ -26,28 +26,28 @@ class SampleCode extends Model
     	'deleted_at'
     ];
 
-    public function sample_code()
+    public function sample_codes()
     {
-    	return $this->HasMany(self::class);
+    	return $this->hasMany(self::class);
     }
 
     public function sample_code_parent()
     {
-    	return $this->belogsTo(self::class, 'sample_code_id');
+    	return $this->belogsTo(self::class, 'sample_code_id')->withDefault();
     }
 
     public function buyer()
     {
-    	return $this->belongsTo(Buyer::class);
+    	return $this->belongsTo(Buyer::class)->withDefault();
     }
 
     public function color()
     {
-    	return $this->belongsTo(Color::class);
+    	return $this->belongsTo(Color::class)->withDefault();
     }
 
     public function size()
     {
-    	return $this->belongsTo(Size::class);
+    	return $this->belongsTo(Size::class)->withDefault();
     }
 }

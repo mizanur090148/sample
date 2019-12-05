@@ -30,38 +30,38 @@
         </a>
       </li> --}}
       <li class="nav-item">
-        <a class="nav-link " href="{{ url('/buyers') }}">
+        <a class="nav-link @if($menuUrl == 'buyers') active @endif" href="{{ url('/buyers') }}">
           <i class="material-icons">vertical_split</i>
           <span>Buyers</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="{{ url('colors') }}">
+        <a class="nav-link @if($menuUrl == 'colors') active @endif" href="{{ url('colors') }}">
           <i class="material-icons">note_add</i>
           <span>Colors</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="{{ url('/sizes') }}">
+        <a class="nav-link @if($menuUrl == 'sizes') active @endif" href="{{ url('/sizes') }}">
           <i class="material-icons">view_module</i>
           <span>Sizes</span>
         </a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link " href="{{ url('/sample-codes') }}">
+        <a class="nav-link @if($menuUrl == 'sample-codes') active @endif" href="{{ url('/sample-codes') }}">
           <i class="material-icons">table_chart</i>
           <span>Sample Codes</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="{{ url('/users') }}">
+        <a class="nav-link @if($menuUrl == 'users') active @endif" href="{{ url('/users') }}">
           <i class="material-icons">person</i>
           <span>Users</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="user-profile-lite.html">
+        <a class="nav-link" href="user-profile-lite.html">
           <i class="material-icons">person</i>
           <span>User Profile</span>
         </a>

@@ -12,7 +12,7 @@
           <div class="card-header border-bottom">
             {{-- <h6 class="m-0">Fund Transfer List</h6> --}}
             <a class="btn btn-sm btn-info" href="{{ url('sample-codes/create') }}">
-              <i class="glyphicon glyphicon-plus"></i> New Transaction
+              <i class="glyphicon glyphicon-plus"></i> New Sample Code
             </a>
           </div>
           @include('backend.partials.response_message')
@@ -26,20 +26,38 @@
                   <th scope="col" class="border-0">Buyer</th>                
                   <th scope="col" class="border-0">Color</th>
                   <th scope="col" class="border-0">Size</th>
+                  <th scope="col" class="border-0">Quantity</th>
                   <th scope="col" class="border-0">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                @forelse($sample_codes as $sample_code)
+                @forelse($sample_code_list as $sample_code)
                   <tr style="height: 20px !important;">
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ str_pad($sample_code->id, 8, '0', STR_PAD_LEFT) }}</td>
-                    <td>{{ $sample_code->buyer->name }}</td>
-                    <td>{{ $sample_code->color->name }}</td>
-                    <td>{{ $sample_code->size->name }}</td>
                     <td>
-                      <a href="{{ url('/sample-codes/'.$sample_code->id ) }}"><i class="fa fa-eye"></i></a>
-                      <a href="{{ url('/sample-codes/'.$sample_code->id ) }}"><i class="fa fa-times"></i></a>
+                      {{ 
+                        implode(', ', array_unique($sample_code->sample_codes->pluck('buyer.name')->toArray())) 
+                      }}
+                    </td>
+                    <td>
+                      {{ 
+                        implode(', ', array_unique($sample_code->sample_codes->pluck('color.name')->toArray())) 
+                      }}
+                    </td>
+                    <td>
+                      {{ 
+                        implode(', ', array_unique($sample_code->sample_codes->pluck('size.name')->toArray())) 
+                      }}
+                    </td>
+                    <td>{{ $sample_code->sample_codes->count() }}</td>
+                    <td>
+                      <a class="btn btn-xs btn-success" href="{{ url('/sample-codes/'.$sample_code->id ) }}">
+                        <i class="fa fa-eye"></i>
+                      </a>
+                      <a class="btn btn-xs btn-danger" href="{{ url('/sample-codes/'.$sample_code->id ) }}">
+                        <i class="fa fa-times"></i>
+                      </a>
                     </td>
                   </tr>
                 @empty
@@ -49,7 +67,7 @@
                 @endforelse
               </tbody>
               <tfoot>
-                @if($sample_codes->total() > 15)
+                @if($sample_code_list->total() > 15)
                   <tr>
                     <td colspan="4" align="center">
                       {{ $transactions->appends(request()->except('page'))->links() }}
