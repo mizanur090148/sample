@@ -117,7 +117,7 @@
               <div class="col-12 col-sm-6 d-flex mb-2 mb-sm-0">
                 <button type="button" class="btn btn-sm btn-white ml-auto mr-auto ml-sm-auto mr-sm-0 mt-3 mt-sm-0">View Full Report &rarr;</button>
               </div> --}}
-              <canvas id="myChart" style="height: 237px !important;"></canvas>
+              <canvas style="height: 300px;" id="myChart"></canvas>
               {{-- <canvas id="bar-chart-grouped" width="800" height="450"></canvas> --}}
             </div>
             
@@ -181,6 +181,7 @@
               display: true,
               text: ''
           },*/
+          maintainAspectRatio: false,
           layout: {
               padding: {
                   left: 20,
