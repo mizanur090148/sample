@@ -54839,6 +54839,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('buyer-component', __webpac
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('color-component', __webpack_require__(/*! ./components/ColorComponent.vue */ "./resources/js/components/ColorComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('size-component', __webpack_require__(/*! ./components/SizeComponent.vue */ "./resources/js/components/SizeComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('user-component', __webpack_require__(/*! ./components/UserComponent.vue */ "./resources/js/components/UserComponent.vue")["default"]);
+/*Vue.component('chart-component', require('./components/ChartComponent.vue').default);*/
+
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('pagination', __webpack_require__(/*! ./components/partial/PaginationComponent.vue */ "./resources/js/components/partial/PaginationComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_1__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["HasError"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_1__["AlertError"].name, vform__WEBPACK_IMPORTED_MODULE_1__["AlertError"]);
