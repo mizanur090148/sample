@@ -5,7 +5,7 @@
 @section('content')
   <!-- Small Stats Blocks -->  
   <div class="main-content-container container-fluid px-4">
-    <div class="page-header row no-gutters py-4">
+    <div class="page-header row no-gutters py-2">
       {{-- <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
         <span class="text-uppercase page-subtitle">Dashboard</span>
         <h3 class="page-title">Blog Overview</h3>
@@ -172,7 +172,7 @@
               {
                   label: "Received data",
                   backgroundColor: "#6887FF",
-                  data: [15, 12, 35, 45, 60, 70, 120]
+                  data: [13, 12, 35, 45, 60, 70, 120]
               }
           ]
       },
