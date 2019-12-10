@@ -6,3 +6,9 @@
 	text-align: right; 
     padding-right: 5px !important;
 }
+.box-background {
+	background: #3dcec0 !important;
+}
+.box-text {
+	color: #000000 !important;
+}

@@ -27,6 +27,6 @@ class FactoriesTableSeeder extends Seeder
         DB::table('factories')->truncate();
         DB::table('factories')->insert($factories);
 
-        $this->command->info('Successfully run factory table seeder');
+        $this->command->info('Successfully run factories table seeder');
     }
 }

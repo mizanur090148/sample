@@ -13,11 +13,11 @@
     </div>
     <div class="row">
       <div class="col-lg col-md-6 col-sm-6 mb-4">
-        <div class="stats-small stats-small--1 card card-small">
+        <div class="stats-small stats-small--1 card card-small box-background">
           <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
               <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Today Sent</span>
+                <span class="stats-small__label text-uppercase box-text">Today Sent</span>
                 <h6 class="stats-small__value count my-3">10</h6>
               </div>
               {{-- <div class="stats-small__data">
@@ -29,11 +29,11 @@
         </div>
       </div>
       <div class="col-lg col-md-6 col-sm-6 mb-4">
-        <div class="stats-small stats-small--1 card card-small">
+        <div class="stats-small stats-small--1 card card-small box-background">
           <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
               <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Total Sent</span>
+                <span class="stats-small__label text-uppercase box-text">Total Sent</span>
                 <h6 class="stats-small__value count my-3">180</h6>
               </div>
               {{-- <div class="stats-small__data">
@@ -45,11 +45,11 @@
         </div>
       </div>
       <div class="col-lg col-md-4 col-sm-6 mb-4">
-        <div class="stats-small stats-small--1 card card-small">
+        <div class="stats-small stats-small--1 card card-small box-background">
           <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
               <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Today Received</span>
+                <span class="stats-small__label text-uppercase box-text">Today Received</span>
                 <h6 class="stats-small__value count my-3">12</h6>
               </div>
               {{-- <div class="stats-small__data">
@@ -61,11 +61,11 @@
         </div>
       </div>
       <div class="col-lg col-md-4 col-sm-6 mb-4">
-        <div class="stats-small stats-small--1 card card-small">
+        <div class="stats-small stats-small--1 card card-small box-background">
           <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
               <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Total Received</span>
+                <span class="stats-small__label text-uppercase box-text">Total Received</span>
                 <h6 class="stats-small__value count my-3">155</h6>
               </div>
               {{-- <div class="stats-small__data">
@@ -77,11 +77,11 @@
         </div>
       </div>
       <div class="col-lg col-md-4 col-sm-12 mb-4">
-        <div class="stats-small stats-small--1 card card-small">
+        <div class="stats-small stats-small--1 card card-small box-background">
           <div class="card-body p-0 d-flex">
             <div class="d-flex flex-column m-auto">
               <div class="stats-small__data text-center">
-                <span class="stats-small__label text-uppercase">Left</span>
+                <span class="stats-small__label text-uppercase box-text">Left</span>
                 <h6 class="stats-small__value count my-3">25</h6>
               </div>
              {{--  <div class="stats-small__data">

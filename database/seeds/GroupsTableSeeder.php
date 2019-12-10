@@ -26,6 +26,6 @@ class GroupsTableSeeder extends Seeder
         DB::table('groups')->truncate();
         DB::table('groups')->insert($groups);
 
-        $this->command->info('Successfully run group table seeder');
+        $this->command->info('Successfully run groups table seeder');
     }
 }

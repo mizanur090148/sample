@@ -31,3 +31,5 @@ Route::get('/search/sizes/{field}/{query}', 'SizeController@searchSizes');
 
 Route::apiResource('/users', 'UserController');
 Route::get('/search/users/{field}/{query}', 'UserController@searchUsers');
+
+Route::apiResource('/roles', 'RoleController');

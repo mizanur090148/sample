@@ -7,6 +7,7 @@ use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -17,11 +18,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'desc');
-        if (request('query')) {
+        $users = User::with('role:id,name')->orderBy('id', 'desc');
+        /*if (request('query')) {
             $users = $users->where('name', 'LIKE', '%'. request('query') .'%');
-        }
-        $users = $users->orderBy('id', 'desc')->paginate();
+        }*/
+        $users = $users->orderBy('id', 'desc')->paginate();       
 
         return new UserCollection($users);
     }

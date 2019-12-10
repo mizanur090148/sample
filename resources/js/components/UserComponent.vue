@@ -27,13 +27,21 @@
 		                            <tr>
 		                                <th scope="col" class="border-0">#</th>
 		                                <th scope="col" class="border-0">Name</th>
+                                        <th scope="col" class="border-0">E-mail</th>
+                                        <th scope="col" class="border-0">Phone No.</th>
+                                        <th scope="col" class="border-0">Address</th>
+                                        <th scope="col" class="border-0">Role</th>
 		                                <th scope="col" class="border-0">Action</th>
 		                            </tr>
 		                        </thead>
 		                        <tbody>
 									<tr v-show="users.length" v-for="(user, index) in users">
 		                                <td>{{ ++index }}</td>
-		                                <td>{{ user.name }}</td>	                                
+		                                <td>{{ user.name }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.phone_no }}</td>
+                                        <td>{{ user.address }}</td>
+                                        <td>{{ user.role ? user.role.name : '' }}</td>
 		                                <td>
                                             <button type="button" class="btn btn-primary btn-sm" @click="edit(user)"><i class="fas fa-edit"></i></button>
 
@@ -66,42 +74,66 @@
                     </div>
                     <form @submit.prevent="editMode ? update() : store()">
                         <div class="modal-body">
-                            <alert-error :form="form" class="text-center"></alert-error>
-                            <div class="form-group">
-                                <label class="font-weight-bold">Name</label>
-                                <input v-model="form.name" type="text" name="name"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
-                                <has-error :form="form" field="name"></has-error>
+                            <div class="form-group row">
+                                <alert-error :form="form" class="text-center"></alert-error>
+                                <div class="col-sm-6">
+                                    <label class="font-weight-bold">Name</label>
+                                    <input v-model="form.name" type="text" name="name"
+                                    class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
+                                    <has-error :form="form" field="name"></has-error>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="font-weight-bold">E-mail</label>
+                                    <input v-model="form.email" type="text" name="email"
+                                    class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
+                                    <has-error :form="form" field="email"></has-error>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label class="font-weight-bold">E-mail</label>
-                                <input v-model="form.email" type="text" name="email"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('email') }">
-                                <has-error :form="form" field="email"></has-error>
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <label class="font-weight-bold">Mobile No</label>
+                                    <input v-model="form.mobile_no" type="text" name="mobile_no"
+                                    class="form-control" :class="{ 'is-invalid': form.errors.has('mobile_no') }">
+                                    <has-error :form="form" field="mobile_no"></has-error>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="font-weight-bold">Address</label>                              
+                                    <textarea v-model="form.address" name="address"
+                                    class="form-control" :class="{ 'is-invalid': form.errors.has('address') }"></textarea>
+                                    <has-error :form="form" field="address"></has-error>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label class="font-weight-bold">Mobile No</label>
-                                <input v-model="form.mobile_no" type="text" name="mobile_no"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('mobile_no') }">
-                                <has-error :form="form" field="mobile_no"></has-error>
+                            <div class="form-group row">
+                                 <div class="col-sm-6">
+                                    <label class="font-weight-bold">Role</label>
+                                    <select class='form-control' v-model='role_id'>
+                                      <option value=''>Select State</option>
+                                      <option v-for='role in roles' :value='role.id'>{{ role.name }}</option>
+                                    </select>
+                                    <has-error :form="form" field="role_id"></has-error>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="font-weight-bold">Status</label>
+                                    <select class='form-control' v-model='status'>                                     
+                                      <option value='1' selected="selected">Active</option>
+                                      <option value='0'>Inactive</option>
+                                    </select>
+                                    <has-error :form="form" field="status"></has-error>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label class="font-weight-bold">Address</label>                              
-                                <textarea v-model="form.address" name="address"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('address') }"></textarea>
-                                <has-error :form="form" field="address"></has-error>
-                            </div>
-                            <div class="form-group">
-                                <label class="font-weight-bold">Password</label>
-                                <input v-model="form.password" type="text" name="password"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
-                                <has-error :form="form" field="password"></has-error>
-                            </div>
-                            <div class="form-group">
-                                <label class="font-weight-bold">Confirm Password</label>
-                                <input v-model="form.confirm_password" type="text" name="confirm_password"
-                                class="form-control" :class="{ 'is-invalid': form.errors.has('confirm_password') }">
-                                <has-error :form="form" field="confirm_password"></has-error>
+                            <div class="form-group row">
+                                 <div class="col-sm-6">
+                                    <label class="font-weight-bold">Password</label>
+                                    <input v-model="form.password" type="text" name="password"
+                                    class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
+                                    <has-error :form="form" field="password"></has-error>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="font-weight-bold">Confirm Password</label>
+                                    <input v-model="form.confirm_password" type="text" name="confirm_password"
+                                    class="form-control" :class="{ 'is-invalid': form.errors.has('confirm_password') }">
+                                    <has-error :form="form" field="confirm_password"></has-error>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -122,6 +154,7 @@
           return {
           	editMode: false,
             users: [],
+            roles: [],
             query: '',
             pagination: {
                 current_page: 1
@@ -177,8 +210,15 @@
             },            
             create() {
                 this.editMode = false
-                this.form.reset()
-                this.form.clear()
+                this.form.reset();
+                this.form.clear();
+                axios.get('api/roles')
+                    .then(response => {
+                        this.roles = response.data.data;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
                 $('#userModal').modal('show');
             },
             store() {           

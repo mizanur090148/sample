@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
                 'mobile_no' => '+88017123456789',
                 'address' => 'Mirpur, Dhaka',
         		'status' => 1,
-        		'role_type' => 2,
+        		'role_id' => 1,
         		'email' => 'super@admin.com',
         		'password' => bcrypt(123456),
                 'factory_id' => 1
@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
                 'mobile_no' => '+88017123456789',
                 'address' => 'Mirpur, Dhaka',
                 'status' => 1,
-                'role_type' => 1,
+                'role_id' => 2,
         		'email' => 'admin@admin.com',
         		'password' => bcrypt(123456),
                 'factory_id' => 1
@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
                 'mobile_no' => '+88017123456789',
                 'address' => 'Mirpur, Dhaka',
                 'status' => 1,
-                'role_type' => 0,
+                'role_id' => 3,
         		'email' => 'user@user.com',
         		'password' => bcrypt(123456),
                 'factory_id' => 1
@@ -49,6 +49,6 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->truncate();
         DB::table('users')->insert($users);
 
-        $this->command->info('Successfully run user table seeder');
+        $this->command->info('Successfully run users table seeder');
     }
 }

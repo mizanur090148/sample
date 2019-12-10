@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -17,11 +18,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'name',     
         'phone_no',
         'screen_name',
         'email',
+        'address',
         'email_verified_at',
         'last_login',
         'email', 
@@ -51,5 +52,10 @@ class User extends Authenticatable
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

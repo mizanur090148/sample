@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('last_login')->nullable();
             $table->string('access_token')->nullable();            
             $table->smallInteger('status')->default(0)->comment('0=inactive, 1=active, 2=blocked');
-            $table->tinyInteger('role_type')->default(0)->comment('0=user, 1=admin, 2=super_admin');
+            $table->unsignedBigInteger('role_id')->nullable();
             $table->unsignedBigInteger('factory_id');
             $table->string('password');
             $table->rememberToken();
