@@ -2702,13 +2702,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       editMode: false,
+      factories_dropdown: [],
       users: [],
       roles: [],
       query: '',
+      //role_id: '',
+      //status: 1,
       pagination: {
         current_page: 1
       },
@@ -2718,6 +2731,9 @@ __webpack_require__.r(__webpack_exports__);
         email: '',
         mobile_no: '',
         address: '',
+        factory_id: '',
+        role_id: '',
+        status: 1,
         password: ''
       })
     };
@@ -2732,7 +2748,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    console.log('mounted');
     this.getData();
   },
   methods: {
@@ -2764,6 +2779,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form.clear();
       axios.get('api/roles').then(function (response) {
         _this3.roles = response.data.data;
+      })["catch"](function (e) {
+        console.log(e);
+      });
+      axios.get('api/factories-dropdown').then(function (response) {
+        _this3.factories_dropdown = response.data.data;
       })["catch"](function (e) {
         console.log(e);
       });
@@ -40874,7 +40894,7 @@ var render = function() {
                           { staticClass: "col-sm-6" },
                           [
                             _c("label", { staticClass: "font-weight-bold" }, [
-                              _vm._v("Role")
+                              _vm._v("Role1234")
                             ]),
                             _vm._v(" "),
                             _c(
@@ -40884,8 +40904,8 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.role_id,
-                                    expression: "role_id"
+                                    value: _vm.form.role_id,
+                                    expression: "form.role_id"
                                   }
                                 ],
                                 staticClass: "form-control",
@@ -40900,15 +40920,19 @@ var render = function() {
                                           "_value" in o ? o._value : o.value
                                         return val
                                       })
-                                    _vm.role_id = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
+                                    _vm.$set(
+                                      _vm.form,
+                                      "role_id",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
                                   }
                                 }
                               },
                               [
                                 _c("option", { attrs: { value: "" } }, [
-                                  _vm._v("Select State")
+                                  _vm._v("Select Role")
                                 ]),
                                 _vm._v(" "),
                                 _vm._l(_vm.roles, function(role) {
@@ -40944,8 +40968,8 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.status,
-                                    expression: "status"
+                                    value: _vm.form.status,
+                                    expression: "form.status"
                                   }
                                 ],
                                 staticClass: "form-control",
@@ -40960,20 +40984,20 @@ var render = function() {
                                           "_value" in o ? o._value : o.value
                                         return val
                                       })
-                                    _vm.status = $event.target.multiple
-                                      ? $$selectedVal
-                                      : $$selectedVal[0]
+                                    _vm.$set(
+                                      _vm.form,
+                                      "status",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
                                   }
                                 }
                               },
                               [
-                                _c(
-                                  "option",
-                                  {
-                                    attrs: { value: "1", selected: "selected" }
-                                  },
-                                  [_vm._v("Active")]
-                                ),
+                                _c("option", { attrs: { value: "1" } }, [
+                                  _vm._v("Active")
+                                ]),
                                 _vm._v(" "),
                                 _c("option", { attrs: { value: "0" } }, [
                                   _vm._v("Inactive")
@@ -40983,6 +41007,74 @@ var render = function() {
                             _vm._v(" "),
                             _c("has-error", {
                               attrs: { form: _vm.form, field: "status" }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-sm-6" },
+                          [
+                            _c("label", { staticClass: "font-weight-bold" }, [
+                              _vm._v("Factory")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.factory_id,
+                                    expression: "form.factory_id"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                on: {
+                                  change: function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.$set(
+                                      _vm.form,
+                                      "factory_id",
+                                      $event.target.multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    )
+                                  }
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Select Factory")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.factories_dropdown, function(
+                                  factory
+                                ) {
+                                  return _c(
+                                    "option",
+                                    { domProps: { value: factory.id } },
+                                    [_vm._v(_vm._s(factory.name))]
+                                  )
+                                })
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _c("has-error", {
+                              attrs: { form: _vm.form, field: "factory_id" }
                             })
                           ],
                           1
@@ -41011,7 +41103,7 @@ var render = function() {
                               class: {
                                 "is-invalid": _vm.form.errors.has("password")
                               },
-                              attrs: { type: "text", name: "password" },
+                              attrs: { type: "password", name: "password" },
                               domProps: { value: _vm.form.password },
                               on: {
                                 input: function($event) {
@@ -41057,7 +41149,10 @@ var render = function() {
                                   "confirm_password"
                                 )
                               },
-                              attrs: { type: "text", name: "confirm_password" },
+                              attrs: {
+                                type: "password",
+                                name: "confirm_password"
+                              },
                               domProps: { value: _vm.form.confirm_password },
                               on: {
                                 input: function($event) {

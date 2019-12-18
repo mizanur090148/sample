@@ -104,33 +104,43 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                 <div class="col-sm-6">
-                                    <label class="font-weight-bold">Role</label>
-                                    <select class='form-control' v-model='role_id'>
-                                      <option value=''>Select State</option>
+                                <div class="col-sm-6">
+                                    <label class="font-weight-bold">Role1234</label>
+                                    <select class='form-control' v-model='form.role_id'>
+                                      <option value=''>Select Role</option>
                                       <option v-for='role in roles' :value='role.id'>{{ role.name }}</option>
                                     </select>
                                     <has-error :form="form" field="role_id"></has-error>
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="font-weight-bold">Status</label>
-                                    <select class='form-control' v-model='status'>                                     
-                                      <option value='1' selected="selected">Active</option>
+                                    <select class='form-control' v-model='form.status'>
+                                      <option value='1'>Active</option>
                                       <option value='0'>Inactive</option>
                                     </select>
                                     <has-error :form="form" field="status"></has-error>
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <label class="font-weight-bold">Factory</label>
+                                    <select class='form-control' v-model='form.factory_id'>
+                                      <option value=''>Select Factory</option>
+                                      <option v-for='factory in factories_dropdown' :value='factory.id'>{{ factory.name }}</option>
+                                    </select>
+                                    <has-error :form="form" field="factory_id"></has-error>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                  <div class="col-sm-6">
                                     <label class="font-weight-bold">Password</label>
-                                    <input v-model="form.password" type="text" name="password"
+                                    <input v-model="form.password" type="password" name="password"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
                                     <has-error :form="form" field="password"></has-error>
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="font-weight-bold">Confirm Password</label>
-                                    <input v-model="form.confirm_password" type="text" name="confirm_password"
+                                    <input v-model="form.confirm_password" type="password" name="confirm_password"
                                     class="form-control" :class="{ 'is-invalid': form.errors.has('confirm_password') }">
                                     <has-error :form="form" field="confirm_password"></has-error>
                                 </div>
@@ -153,9 +163,12 @@
         data () {
           return {
           	editMode: false,
+            factories_dropdown: [],
             users: [],
             roles: [],
             query: '',
+            //role_id: '',
+            //status: 1,
             pagination: {
                 current_page: 1
             },
@@ -165,7 +178,10 @@
                 email: '',
                 mobile_no: '',
                 address: '',
-                password: ''              
+                factory_id: '',
+                role_id: '',
+                status: 1,
+                password: ''
             }),
           }
         }, 
@@ -181,7 +197,6 @@
         },      
 
         mounted() {
-            console.log('mounted');
             this.getData();
         },
 
@@ -219,9 +234,16 @@
                     .catch(e => {
                         console.log(e);
                     })
+                axios.get('api/factories-dropdown')
+                    .then(response => {
+                        this.factories_dropdown = response.data.data;
+                    })
+                    .catch(e => {
+                        console.log(e);
+                    })
                 $('#userModal').modal('show');
             },
-            store() {           
+            store() {
                 this.form.busy = true;
                 this.form.post('/api/users')
                     .then(response => {

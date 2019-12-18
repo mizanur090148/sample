@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserCollection;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\FactoryCollection;
+use App\Http\Resources\FactoryResource;
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Role;
+use App\Models\Factory;
 
-class UserController extends Controller
+class FactoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,13 +17,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with('role:id,name')->orderBy('id', 'desc');
+        $factories = Factory::orderBy('id', 'desc');
         /*if (request('query')) {
-            $users = $users->where('name', 'LIKE', '%'. request('query') .'%');
+            $factories = $factories->where('name', 'LIKE', '%'. request('query') .'%');
         }*/
-        $users = $users->orderBy('id', 'desc')->paginate();       
+        $factories = $factories->orderBy('id', 'desc')->paginate();       
 
-        return new UserCollection($users);
+        return new FactoryCollection($factories);
     }
 
     /**
@@ -37,16 +36,15 @@ class UserController extends Controller
     {
         $this->validate($request, [          
             'name' => 'required|max:50',
-            'email' => 'required|max:30|unique:users',
+            'email' => 'required|max:30|unique:factories',
             'mobile_no' => 'required|max:30',
             'role_id' => 'required',
-            'factory_id' => 'required',
             'status' => 'required',
             'password' => 'required|min:6|max:20',
             'password' => 'required|min:6|same:confirm_password',
         ]);
 
-        return new UserResource(User::create($request->all()));
+        return new FactoryResource(Factory::create($request->all()));
     }    
 
     /**
@@ -59,14 +57,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|max:30|unique:users,name,'.$id           
+            'name' => 'required|max:30|unique:factories,name,'.$id           
         ]);
 
-        $user = User::findOrFail($id);
-        $user->name = $request->name;        
-        $user->save();
+        $factory = Factory::findOrFail($id);
+        $factory->name = $request->name;        
+        $factory->save();
 
-        return new UserResource($user);
+        return new FactoryResource($factory);
     }    
 
     /**
@@ -77,9 +75,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        $factory = Factory::findOrFail($id);
+        $factory->delete();
 
-        return new UserResource($user);
+        return new FactoryResource($factory);
+    }
+
+    public function factoriesDropdown()
+    {
+        $factories_dropdown = Factory::all();
+
+        return new FactoryCollection($factories_dropdown);
     }
 }
