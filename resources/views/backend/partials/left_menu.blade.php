@@ -55,6 +55,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link @if($menuUrl == 'factories') active @endif" href="{{ url('/factories') }}">
+          <i class="material-icons">person</i>
+          <span>Factories</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link @if($menuUrl == 'users') active @endif" href="{{ url('/users') }}">
           <i class="material-icons">person</i>
           <span>Users</span>

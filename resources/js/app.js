@@ -39,7 +39,6 @@ Vue.use(VueProgressBar, VueProgressBarOptions);
 Vue.use(Snotify, Snotifyoptions);
 Vue.use(Toasted);
 
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -53,6 +52,7 @@ Vue.component('buyer-component', require('./components/BuyerComponent.vue').defa
 Vue.component('color-component', require('./components/ColorComponent.vue').default);
 Vue.component('size-component', require('./components/SizeComponent.vue').default);
 Vue.component('user-component', require('./components/UserComponent.vue').default);
+Vue.component('factory-component', require('./components/FactoryComponent.vue').default);
 /*Vue.component('chart-component', require('./components/ChartComponent.vue').default);*/
 Vue.component('pagination', require('./components/partial/PaginationComponent.vue').default);
 

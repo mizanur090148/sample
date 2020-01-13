@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::get('buyers', 'BuyerController');
 	Route::get('colors', 'ColorController');
 	Route::get('sizes', 'SizeController');
+	Route::get('factories', 'FactoryController');
 	Route::get('users', 'UserController');
 	Route::resource('sample-codes', 'SampleCodeController');
 

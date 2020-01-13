@@ -35,3 +35,6 @@ Route::get('/search/users/{field}/{query}', 'UserController@searchUsers');
 Route::apiResource('/roles', 'RoleController');
 Route::apiResource('/factories', 'RoleController');
 Route::get('/factories-dropdown', 'FactoryController@factoriesDropdown');
+
+Route::apiResource('/factories', 'FactoryController');
+Route::get('/search/factories/{field}/{query}', 'FactoryController@searchFactories');
